@@ -1,4 +1,4 @@
-import { openDb } from "@/lib/db";
+import { dbAll } from "@/lib/db";
 import PropertyCard from "@/components/properties/PropertyCard";
 import PropertyFilters from "@/components/properties/PropertyFilters";
 
@@ -17,7 +17,6 @@ export default async function ImoveisPage(
   const banheiros = searchParams.banheiros as string;
   const vagas = searchParams.vagas as string;
 
-  const db = await openDb();
   let query = 'SELECT * FROM Property WHERE 1=1';
   const params: any[] = [];
 
@@ -59,7 +58,7 @@ export default async function ImoveisPage(
     params.push(Number(vagas));
   }
 
-  const properties = await db.all(query, ...params);
+  const properties = await dbAll(query, params);
 
   return (
     <div className="bg-background min-h-screen">
@@ -87,7 +86,7 @@ export default async function ImoveisPage(
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {properties.map(p => (
+                {properties.map((p: any) => (
                   <PropertyCard key={p.id} property={p} />
                 ))}
               </div>

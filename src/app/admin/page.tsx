@@ -1,11 +1,8 @@
-import { openDb } from "@/lib/db";
+import { dbAll } from "@/lib/db";
 import { logout } from "./actions";
 
 export default async function AdminDashboard() {
-  const db = await openDb();
-  
-  // Dashboard Metrics
-  const properties = await db.all('SELECT * FROM Property');
+  const properties: any[] = await dbAll('SELECT * FROM Property') as any[];
   const totalImoveis = properties.length;
   const imoveisVenda = properties.filter(p => p.finalidade === 'Comprar').length;
   const imoveisAluguel = properties.filter(p => p.finalidade === 'Alugar').length;
@@ -48,7 +45,7 @@ export default async function AdminDashboard() {
           </div>
         </div>
 
-        {/* Gerenciar Imóveis (Mock visual) */}
+        {/* Gerenciar Imóveis */}
         <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
           <div className="p-6 border-b border-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <h2 className="text-xl font-bold text-foreground">Gerenciar Imóveis</h2>
@@ -79,7 +76,7 @@ export default async function AdminDashboard() {
                         {p.finalidade}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-foreground/70">R$ {p.preco.toLocaleString('pt-BR')}</td>
+                    <td className="px-6 py-4 text-sm text-foreground/70">R$ {Number(p.preco).toLocaleString('pt-BR')}</td>
                     <td className="px-6 py-4 text-sm text-foreground/70">{p.status}</td>
                     <td className="px-6 py-4 text-sm text-right space-x-4">
                       <button className="text-blue-500 hover:text-blue-700 font-medium transition-colors">Editar</button>

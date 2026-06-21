@@ -1,4 +1,4 @@
-import { openDb } from "@/lib/db";
+import { dbGet } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PropertyGallery from "@/components/properties/PropertyGallery";
@@ -6,8 +6,7 @@ import PropertyGallery from "@/components/properties/PropertyGallery";
 export default async function PropertyDetailsPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const id = params.id;
-  const db = await openDb();
-  const property = await db.get('SELECT * FROM Property WHERE id = ?', id);
+  const property: any = await dbGet('SELECT * FROM Property WHERE id = ?', [id]);
 
   if (!property) {
     notFound();

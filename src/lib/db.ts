@@ -1,38 +1,26 @@
-import sqlite3 from 'sqlite3';
-import { open, Database } from 'sqlite';
-import path from 'path';
+import { createClient } from '@libsql/client';
 
-let db: Database<sqlite3.Database, sqlite3.Statement> | null = null;
+const client = createClient({
+  url: process.env.TURSO_DATABASE_URL || 'file:imobiliaria.db',
+  authToken: process.env.TURSO_AUTH_TOKEN,
+});
 
-export async function openDb() {
-  if (!db) {
-    db = await open({
-      filename: path.join(process.cwd(), 'imobiliaria.db'),
-      driver: sqlite3.Database
-    });
-  }
-  return db;
+export function getDb() {
+  return client;
 }
 
-export async function setupDb() {
-  const database = await openDb();
-  
-  await database.exec(`
-    CREATE TABLE IF NOT EXISTS Property (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      titulo TEXT NOT NULL,
-      tipo TEXT NOT NULL,
-      finalidade TEXT NOT NULL DEFAULT 'Comprar',
-      bairro TEXT NOT NULL,
-      preco REAL NOT NULL,
-      quartos INTEGER NOT NULL,
-      banheiros INTEGER NOT NULL,
-      area REAL NOT NULL,
-      vagas INTEGER DEFAULT 0,
-      descricao TEXT,
-      status TEXT NOT NULL,
-      destaque BOOLEAN DEFAULT 0,
-      imagem TEXT
-    );
-  `);
+// Helper functions to match the old API patterns
+
+export async function dbAll(sql: string, args: any[] = []) {
+  const result = await client.execute({ sql, args });
+  return result.rows;
+}
+
+export async function dbGet(sql: string, args: any[] = []) {
+  const result = await client.execute({ sql, args });
+  return result.rows[0] || null;
+}
+
+export async function dbRun(sql: string, args: any[] = []) {
+  return await client.execute({ sql, args });
 }
