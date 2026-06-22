@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-Blue)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-38BDF8)
+![Turso](https://img.shields.io/badge/Turso-Database-green)
+![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7)
 
-## Getting Started
+# Imob Vila Verde
 
-First, run the development server:
+Protótipo de plataforma imobiliária desenvolvido para apresentação comercial e validação de conceito junto a uma imobiliária de bairro.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse o projeto online:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[ImobVilaVerde](https://imobvilaverde.netlify.app)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Sobre o Projeto
 
-## Learn More
+O site da Imobiliaria Vila Verde foi desenvolvido com o objetivo de demonstrar uma solução moderna para gestão e divulgação de imóveis, oferecendo uma experiência simples e intuitiva para clientes interessados em compra e locação.
 
-To learn more about Next.js, take a look at the following resources:
+O sistema permite:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Visualização de imóveis disponíveis
+- Página de detalhes para cada imóvel
+- Filtros de busca
+- Contato rápido via WhatsApp
+- Dashboard administrativo para gerenciamento dos imóveis
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tecnologias Utilizadas
 
-## Deploy on Vercel
+### Frontend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Banco de Dados
+
+- Turso (SQLite distribuído)
+
+A primeira versão utilizava SQLite local para persistência dos dados.
+Posteriormente, o projeto foi migrado para o Turso, permitindo armazenamento remoto e maior flexibilidade para deploy em ambientes de produção.
+
+### Deploy
+
+- Netlify
+
+## Funcionalidades
+
+### Área Pública
+
+- Página inicial
+- Listagem de imóveis
+- Filtros de pesquisa
+- Detalhes do imóvel
+- Contato via WhatsApp
+- Página institucional
+
+### Área Administrativa
+
+- Login administrativo
+- Dashboard dos anuncios
+
+## Responsividade
+
+O sistema foi desenvolvido seguindo a abordagem mobile-first, garantindo boa experiência em:
+
+- Smartphones
+- Tablets
+- Desktops
+
+## Licença
+
+Projeto desenvolvido para fins de demonstração e portfólio.
