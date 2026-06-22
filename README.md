@@ -62,6 +62,9 @@ Posteriormente, o projeto foi migrado para o Turso, permitindo armazenamento rem
 - Login administrativo
 - Dashboard dos anuncios
 
+[Área Administrativa](https://imobvilaverde.netlify.app/admin)
+Senha padrão: admin123
+
 ## Responsividade
 
 O sistema foi desenvolvido seguindo a abordagem mobile-first, garantindo boa experiência em:
